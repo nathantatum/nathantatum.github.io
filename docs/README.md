@@ -1,6 +1,6 @@
 # nathantatum.github.io
 
-The project contains information.
+The project contains information.  Lots of information.
 
 ### Portfolio
 
