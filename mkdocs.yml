@@ -29,7 +29,7 @@ theme:
     logo: material/library
   features:
     # - navigation.tabs
-    - navigation.instant
+    # - navigation.instant
     - navigation.expand
   palette:
     scheme: default
