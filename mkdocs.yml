@@ -39,6 +39,11 @@ theme:
 # Plugins
 plugins:
   - search
+  - blogging:
+      dirs:
+        - blog
+        - poc
+        - util
 
 # Customization
 # TBD
