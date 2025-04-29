@@ -44,6 +44,7 @@ plugins:
         - blog
         - poc
         - util
+      locale: en_US
 
 # Customization
 # TBD
