@@ -14,10 +14,19 @@ nav:
   - Welcome:
     - Overview: README.md
   - Blog:
-    - 1 Post 1: blog/1.md
+    - Hello World: blog/1.md
+  - PoCs:
+    - Alembic: poc/1.md
+  - Utils:
+    - rpi Utilities: util/1.md
 
 # Copyright
-# TBD
+# 2025 Nathan Tatum
+copyright:
+  year: 2025
+  holder: Nathan Tatum
+  license: CC BY-NC-ND 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 # Theme
 theme:
