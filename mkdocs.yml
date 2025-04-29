@@ -46,8 +46,6 @@ plugins:
   - blogging:
       dirs:
         - blog
-        - poc
-        - util
       locale: en_US
 
 # Customization
