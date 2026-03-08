@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+
+const projects = [
+  {
+    title: 'Alembic PoC',
+    description: 'Proof of concept exploring Alembic for database migrations.',
+    href: '/projects/alembic-poc',
+    tags: ['Python', 'Alembic', 'SQL'],
+    icon: '\u{1F5C4}',
+  },
+  {
+    title: 'Portfolio Site',
+    description: 'This site - built with Astro and deployed to GitHub Pages.',
+    href: '/projects/portfolio-site',
+    tags: ['Astro', 'TypeScript', 'CSS'],
+    icon: '\u{1F310}',
+  },
+];
+---
+
+<BaseLayout title="Projects - Nathan Tatum">
+  <div class="page-header">
+    <h1>Projects</h1>
+    <p class="page-subtitle">Things I've built or am building.</p>
+  </div>
+
+  <div class="grid">
+    {projects.map(project => (
+      <Card
+        title={project.title}
+        description={project.description}
+        href={project.href}
+        tags={project.tags}
+        icon={project.icon}
+      />
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+</style>

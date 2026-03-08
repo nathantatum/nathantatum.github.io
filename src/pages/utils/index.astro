@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+
+const utils = [
+  {
+    title: 'Raspberry Pi Utilities',
+    description: 'Collection of utilities for setting up a Raspberry Pi from scratch.',
+    href: '/utils/rpi-utils',
+    tags: ['Raspberry Pi', 'Linux'],
+    icon: '\u{1F4DF}',
+  },
+];
+---
+
+<BaseLayout title="Utils - Nathan Tatum">
+  <div class="page-header">
+    <h1>Utilities</h1>
+    <p class="page-subtitle">Developer utilities and tools.</p>
+  </div>
+
+  <div class="grid">
+    {utils.map(util => (
+      <Card
+        title={util.title}
+        description={util.description}
+        href={util.href}
+        tags={util.tags}
+        icon={util.icon}
+      />
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+</style>
