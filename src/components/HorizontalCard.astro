@@ -1,0 +1,169 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  badge?: string;
+  tags?: string[];
+  date?: string;
+  icon?: string;
+  target?: string;
+  githubUrl?: string;
+}
+
+const {
+  title,
+  description,
+  href,
+  badge,
+  tags = [],
+  date,
+  icon = '📁',
+  target = '_self',
+  githubUrl,
+} = Astro.props;
+---
+
+<div class="astrofy-card">
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-icon">{icon}</span>
+        <h3 class="card-title">
+          <a href={href} target={target}>
+            {title}
+          </a>
+        </h3>
+      </div>
+      {badge && <span class="badge">{badge}</span>}
+    </div>
+
+    <p class="card-description">{description}</p>
+
+    <div class="card-footer">
+      {tags.length > 0 && (
+        <div class="card-tags">
+          {tags.map(tag => (
+            <span class="tag-pill">#{tag}</span>
+          ))}
+        </div>
+      )}
+      
+      {date && <span class="card-date">{date}</span>}
+
+      {githubUrl && (
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="card-github-link" title="View Source Code">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          Source
+        </a>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .astrofy-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+
+  .astrofy-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+    background: var(--bg-card-hover);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .card-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .card-title a {
+    color: var(--text-main);
+    text-decoration: none;
+  }
+
+  .card-title a:hover {
+    color: var(--primary);
+  }
+
+  .card-description {
+    font-size: 0.925rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag-pill {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    background: var(--bg-base);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+
+  .card-date {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+  }
+
+  .card-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .card-github-link:hover {
+    color: var(--primary);
+    text-decoration: none;
+  }
+</style>

@@ -1,30 +1,53 @@
 ---
-import Nav from '../components/Nav.astro';
+import Sidebar from '../components/Sidebar.astro';
+import HeaderMobile from '../components/HeaderMobile.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description = 'Nathan Tatum - Software Engineer' } = Astro.props;
+const { title, description = 'Nathan Tatum - Software Engineer Portfolio & Tech Blog', image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <title>{title} | Nathan Tatum</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- OpenGraph / Social Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Inline Theme Script to Prevent Theme Flash -->
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+      }
+    </script>
   </head>
   <body>
-    <Nav />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+    <HeaderMobile />
+    
+    <div class="layout-container">
+      <Sidebar />
+      
+      <main class="main-content">
+        <slot />
+        <Footer />
+      </main>
+    </div>
   </body>
 </html>

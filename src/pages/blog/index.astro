@@ -1,40 +1,60 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Card from '../../components/Card.astro';
+import HorizontalCard from '../../components/HorizontalCard.astro';
 
 const posts = [
   {
     title: 'Hello World',
     description: 'Welcome to my blog - documenting the tech things I\'ve been working on.',
     href: '/blog/hello-world',
-    date: '2025-01-01',
+    date: 'Jan 1, 2025',
+    tags: ['technology', 'programming', 'personal'],
+    icon: '📝',
   },
 ];
 ---
 
-<BaseLayout title="Blog - Nathan Tatum">
+<BaseLayout title="Blog" description="Articles, thoughts, and documentation on tech, programming, and AI.">
   <div class="page-header">
-    <h1>Blog</h1>
-    <p class="page-subtitle">Thoughts on tech, programming, and more.</p>
+    <h1 class="page-title">Blog & Technical Notes</h1>
+    <p class="page-description">Documenting thoughts, engineering insights, and tech experiments.</p>
   </div>
 
-  <div class="post-list">
+  <div class="blog-grid">
     {posts.map(post => (
-      <Card
+      <HorizontalCard
         title={post.title}
         description={post.description}
         href={post.href}
         date={post.date}
+        tags={post.tags}
+        icon={post.icon}
       />
     ))}
   </div>
 </BaseLayout>
 
 <style>
-  .post-list {
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+  }
+
+  .blog-grid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    max-width: var(--max-width-prose);
+    gap: 1.25rem;
   }
 </style>

@@ -1,48 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Card from '../components/Card.astro';
+import HorizontalCard from '../components/HorizontalCard.astro';
 
 const projects = [
   {
     title: 'Alembic PoC',
-    description: 'Proof of concept exploring Alembic for database migrations.',
+    description: 'Proof of concept exploring Alembic for database migrations, schema evolution, and automated deployment scripts.',
     href: '/projects/alembic-poc',
-    tags: ['Python', 'Alembic', 'SQL'],
-    icon: '\u{1F5C4}',
+    badge: 'PoC',
+    tags: ['Python', 'Alembic', 'SQL', 'PostgreSQL'],
+    icon: '🗄️',
+    githubUrl: 'https://github.com/nathantatum/alembic-poc',
   },
   {
     title: 'Portfolio Site',
-    description: 'This site - built with Astro and deployed to GitHub Pages.',
+    description: 'Personal portfolio website built with Astro v5 and static HTML compilation for fast hosting on GitHub Pages.',
     href: '/projects/portfolio-site',
-    tags: ['Astro', 'TypeScript', 'CSS'],
-    icon: '\u{1F310}',
+    badge: 'FEATURED',
+    tags: ['Astro', 'TypeScript', 'CSS3', 'GitHub Pages'],
+    icon: '🌐',
+    githubUrl: 'https://github.com/nathantatum/nathantatum.github.io',
   },
 ];
 ---
 
-<BaseLayout title="Projects - Nathan Tatum">
+<BaseLayout title="Projects" description="Explore software engineering projects, open-source work, and proof-of-concepts by Nathan Tatum.">
   <div class="page-header">
-    <h1>Projects</h1>
-    <p class="page-subtitle">Things I've built or am building.</p>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-description">A collection of software engineering projects, proof-of-concepts, and tools I've built.</p>
   </div>
 
-  <div class="grid">
+  <div class="projects-grid">
     {projects.map(project => (
-      <Card
+      <HorizontalCard
         title={project.title}
         description={project.description}
         href={project.href}
+        badge={project.badge}
         tags={project.tags}
         icon={project.icon}
+        githubUrl={project.githubUrl}
       />
     ))}
   </div>
 </BaseLayout>
 
 <style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
 </style>

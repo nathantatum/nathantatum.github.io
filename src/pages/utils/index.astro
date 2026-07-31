@@ -1,27 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Card from '../../components/Card.astro';
+import HorizontalCard from '../../components/HorizontalCard.astro';
 
-const utils = [
+const utilities = [
   {
     title: 'Raspberry Pi Utilities',
-    description: 'Collection of utilities for setting up a Raspberry Pi from scratch.',
+    description: 'Collection of utilities and setup scripts for configuring headless Raspberry Pi hardware, networks, and services.',
     href: '/utils/rpi-utils',
-    tags: ['Raspberry Pi', 'Linux'],
-    icon: '\u{1F4DF}',
+    tags: ['Raspberry Pi', 'Linux', 'Automation'],
+    icon: '📟',
   },
 ];
 ---
 
-<BaseLayout title="Utils - Nathan Tatum">
+<BaseLayout title="Utils" description="Developer utilities, scripts, and hardware configuration tools.">
   <div class="page-header">
-    <h1>Utilities</h1>
-    <p class="page-subtitle">Developer utilities and tools.</p>
+    <h1 class="page-title">Developer Utilities</h1>
+    <p class="page-description">Scripts, hardware tools, and automation snippets created for personal workflow optimization.</p>
   </div>
 
-  <div class="grid">
-    {utils.map(util => (
-      <Card
+  <div class="utils-grid">
+    {utilities.map(util => (
+      <HorizontalCard
         title={util.title}
         description={util.description}
         href={util.href}
@@ -33,9 +33,26 @@ const utils = [
 </BaseLayout>
 
 <style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+  }
+
+  .utils-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
 </style>
