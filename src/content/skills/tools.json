@@ -1,0 +1,5 @@
+{
+  "category": "Infrastructure & Tools",
+  "items": ["Git", "Docker", "Linux", "Raspberry Pi", "GitHub Actions"],
+  "order": 3
+}

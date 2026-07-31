@@ -1,21 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const skills = [
-  { category: 'Languages', items: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'Bash'] },
-  { category: 'Frameworks & Libs', items: ['Astro', 'SQLAlchemy', 'Alembic', 'Pandas', 'FastAPI'] },
-  { category: 'Infrastructure & Tools', items: ['Git', 'Docker', 'Linux', 'Raspberry Pi', 'GitHub Actions'] },
-  { category: 'Domains', items: ['Software Architecture', 'Data Pipelines', 'AI & Automation', 'Database Systems'] },
-];
+const skillsEntries = await getCollection('skills');
+const skills = skillsEntries
+  .map(e => e.data)
+  .sort((a, b) => a.order - b.order);
 
-const experiences = [
-  {
-    role: 'Software Engineer',
-    company: 'Tech Organization',
-    period: '2022 - Present',
-    description: 'Designing and building backend services, data infrastructure, and automation systems.',
-  },
-];
+const experienceEntries = await getCollection('experience');
+const experiences = experienceEntries
+  .map(e => e.data)
+  .sort((a, b) => a.order - b.order);
 ---
 
 <BaseLayout title="Experience" description="Career history, technical skills, and background of Nathan Tatum.">

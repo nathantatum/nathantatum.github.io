@@ -1,0 +1,5 @@
+{
+  "category": "Languages",
+  "items": ["Python", "SQL", "TypeScript", "JavaScript", "Bash"],
+  "order": 1
+}

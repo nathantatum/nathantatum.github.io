@@ -1,0 +1,5 @@
+{
+  "category": "Frameworks & Libs",
+  "items": ["Astro", "SQLAlchemy", "Alembic", "Pandas", "FastAPI"],
+  "order": 2
+}
