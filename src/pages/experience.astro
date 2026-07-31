@@ -9,7 +9,7 @@ const skills = skillsEntries
 
 const experienceEntries = await getCollection('experience');
 const experiences = experienceEntries
-  .flatMap(e => (Array.isArray(e.data) ? e.data : [e.data]))
+  .flatMap(e => e.data)
   .sort((a, b) => a.order - b.order);
 ---
 

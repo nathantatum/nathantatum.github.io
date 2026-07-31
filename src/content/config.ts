@@ -45,7 +45,7 @@ const jobSchema = z.object({
 
 const experience = defineCollection({
   type: 'data',
-  schema: z.union([jobSchema, z.array(jobSchema)]),
+  schema: z.array(jobSchema),
 });
 
 const skills = defineCollection({
