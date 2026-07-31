@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HorizontalCard from '../components/HorizontalCard.astro';
+
+// Dynamically fetch content collections
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(p => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const recentPosts = await getCollection('blog');
+const utils = await getCollection('utils');
+---
+
+<BaseLayout title="Home" description="Nathan Tatum - Software engineer building things and writing about technology.">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-greeting">
+      <span class="greeting-wave">👋</span>
+      <span>Hello there, I'm</span>
+    </div>
+    
+    <h1 class="hero-name">Nathan Tatum</h1>
+    
+    <p class="hero-subtitle">
+      Software Engineer focusing on backend architecture, intelligent tooling, and modern web development.
+    </p>
+
+    <div class="hero-cta">
+      <a href="/projects" class="btn btn-primary">
+        View Projects
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <a href="/experience" class="btn btn-outline">My Experience</a>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <a href="/projects" class="section-link">View all &rarr;</a>
+    </div>
+
+    <div class="card-list">
+      {featuredProjects.map(project => (
+        <HorizontalCard
+          title={project.data.title}
+          description={project.data.description}
+          href={`/projects/${project.slug}`}
+          badge={project.data.badge}
+          tags={project.data.tags}
+          icon={project.data.icon}
+          githubUrl={project.data.githubUrl}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Recent Writing Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Recent Writing</h2>
+      <a href="/blog" class="section-link">Read blog &rarr;</a>
+    </div>
+
+    <div class="card-list">
+      {recentPosts.map(post => (
+        <HorizontalCard
+          title={post.data.title}
+          description={post.data.description}
+          href={`/blog/${post.slug}`}
+          date={post.data.date}
+          tags={post.data.tags}
+          icon={post.data.icon}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Utilities Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Developer Utilities</h2>
+      <a href="/utils" class="section-link">Explore &rarr;</a>
+    </div>
+
+    <div class="card-list">
+      {utils.map(util => (
+        <HorizontalCard
+          title={util.data.title}
+          description={util.data.description}
+          href={`/utils/${util.slug}`}
+          tags={util.data.tags}
+          icon={util.data.icon}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .hero-greeting {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .greeting-wave {
+    font-size: 1.3rem;
+  }
+
+  .hero-name {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .section-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .section-link:hover {
+    text-decoration: underline;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero-name {
+      font-size: 2.25rem;
+    }
+  }
+</style>

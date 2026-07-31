@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HorizontalCard from '../components/HorizontalCard.astro';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Projects" description="Explore software engineering projects, open-source work, and proof-of-concepts by Nathan Tatum.">
+  <div class="page-header">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-description">A collection of software engineering projects, proof-of-concepts, and tools I've built.</p>
+  </div>
+
+  <div class="projects-grid">
+    {sortedProjects.map(project => (
+      <HorizontalCard
+        title={project.data.title}
+        description={project.data.description}
+        href={`/projects/${project.slug}`}
+        badge={project.data.badge}
+        tags={project.data.tags}
+        icon={project.data.icon}
+        githubUrl={project.data.githubUrl}
+      />
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-description {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+</style>

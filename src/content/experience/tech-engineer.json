@@ -1,0 +1,23 @@
+[
+  {
+    "role": "Principal, Data & Analytics",
+    "company": "CapTech Consulting",
+    "period": "2009 - Present",
+    "description": "Designing and building backend services, data infrastructure, and automation systems.",
+    "order": 1
+  },
+  {
+    "role": "Data Engineer",
+    "company": "Tredegar Film Products",
+    "period": "2007 - 2009",
+    "description": "Designing and building backend services, data infrastructure, and automation systems.",
+    "order": 2
+  },
+  {
+    "role": "SAP Analyst",
+    "company": "Accenture",
+    "period": "2005 - 2007",
+    "description": "Designing and building backend services, data infrastructure, and automation systems.",
+    "order": 3
+  }
+]
