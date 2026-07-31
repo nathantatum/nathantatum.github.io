@@ -35,15 +35,17 @@ const utils = defineCollection({
   }),
 });
 
+const jobSchema = z.object({
+  role: z.string(),
+  company: z.string(),
+  period: z.string(),
+  description: z.string(),
+  order: z.number().default(1),
+});
+
 const experience = defineCollection({
   type: 'data',
-  schema: z.object({
-    role: z.string(),
-    company: z.string(),
-    period: z.string(),
-    description: z.string(),
-    order: z.number().default(1),
-  }),
+  schema: z.union([jobSchema, z.array(jobSchema)]),
 });
 
 const skills = defineCollection({
